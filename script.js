@@ -87,7 +87,7 @@
       .then((response) => response.json())
       .then((array) => {
         displayLoading(false);
-
+        answer.innerHTML = "";
         for (let post of array) {
           answer.innerHTML += `<div class="post">
               <div class="title">${post.title}</div>
