@@ -4,6 +4,14 @@
   const cw2 = document.getElementById("cw2");
   const cw3 = document.getElementById("cw3");
   const answer = document.getElementById("answer");
+  const popup = document.getElementById("popup");
+
+  function displayLoading(show = true, msg = "Loading...") {
+    popup.innerText = msg;
+    popup.style.display = show ? "flex" : "none";
+    popup.style.top = `calc(50% - ${popup.clientHeight / 2}px)`;
+    popup.style.left = `calc(50% - ${popup.clientWidth / 2}px)`;
+  }
 
   example.addEventListener("click", function () {
     fetch("https://jsonplaceholder.typicode.com/posts")
@@ -15,31 +23,38 @@
   });
 
   cw1.addEventListener("click", function () {
-    answer.innerHTML = "Loading...";
+    displayLoading(true);
     fetch(`https://jsonplaceholder.typicode.com/posts`)
       .then((response) => response.json())
       .then((array) => {
+        displayLoading(false);
         answer.innerHTML = "";
         for (let post of array) {
-          answer.innerHTML += `<div style="font-weight: 900;">${post.title}</div><div>${post.body}</div><br><hr><br>`;
+          answer.innerHTML += `<div class="post">
+              <div class="title">${post.title}</div>
+              <div class="message">${post.body}</div>
+            </div>`;
+          console.log(`Title: ${post.title}\nBody: ${post.body}`);
         }
       });
   });
 
   cw2.addEventListener("click", function () {
-    answer.innerHTML = "Loading...";
+    displayLoading(true);
     fetch(
       `https://jsonplaceholder.typicode.com/posts/${Math.floor(Math.random() * 99) + 1}`,
     )
       .then((response) => response.json())
       .then((post) => {
+        displayLoading(false);
         answer.innerHTML = "";
         answer.innerHTML += `<div style="font-weight: 900;">${post.title}</div><div>${post.body}</div><br><hr><br>`;
+        console.log(`Title: ${post.title}\nBody: ${post.body}`);
       });
   });
 
   cw3.addEventListener("click", function () {
-    answer.innerHTML = "Processing...";
+    displayLoading(true, "Processing...");
     fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",
       body: JSON.stringify({
@@ -53,8 +68,10 @@
     })
       .then((response) => response.json())
       .then((json) => {
+        displayLoading(false);
         answer.innerHTML = `Dodano nowy post o ID = ${json.id}<br>`;
         answer.innerHTML += `<div style="font-weight: 900;">${json.title}</div><div>${json.body}</div><br><hr><br>`;
+        console.log(`Title: ${post.title}\nBody: ${post.body}`);
       });
   });
 })();

@@ -2,3 +2,32 @@ html {
   height: 100%;
   width: 100%;
 }
+
+.post {
+  padding: 8px;
+  border-bottom: 1px solid #111;
+  border-radius: 8px;
+  background-color: #ccc;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.title {
+  font-weight: 900;
+}
+
+.message {
+  font-weight: 400;
+  color: #FF0000;
+}
+
+#popup {
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+  background-color: #f0f0f0;
+  border-radius: 16px;
+  box-shadow: 4px 4px 4px #11111140;
+  display: none;
+}
