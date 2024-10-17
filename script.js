@@ -3,6 +3,7 @@
   const cw1 = document.getElementById("cw1");
   const cw2 = document.getElementById("cw2");
   const cw3 = document.getElementById("cw3");
+  const cw4 = document.getElementById("cw4");
   const answer = document.getElementById("answer");
   const popup = document.getElementById("popup");
 
@@ -48,7 +49,10 @@
       .then((post) => {
         displayLoading(false);
         answer.innerHTML = "";
-        answer.innerHTML += `<div style="font-weight: 900;">${post.title}</div><div>${post.body}</div><br><hr><br>`;
+        answer.innerHTML += `<div class="post">
+            <div class="title">${post.title}</div>
+            <div class="message">${post.body}</div>
+          </div>`;
         console.log(`Title: ${post.title}\nBody: ${post.body}`);
       });
   });
@@ -67,11 +71,40 @@
       },
     })
       .then((response) => response.json())
-      .then((json) => {
+      .then((post) => {
         displayLoading(false);
-        answer.innerHTML = `Dodano nowy post o ID = ${json.id}<br>`;
-        answer.innerHTML += `<div style="font-weight: 900;">${json.title}</div><div>${json.body}</div><br><hr><br>`;
+        answer.innerHTML = `Dodano nowy post o ID = ${post.id}<br>`;
+        answer.innerHTML += `<div class="post">
+            <div class="title">${post.title}</div>
+            <div class="message">${post.body}</div>
+          </div>`;
         console.log(`Title: ${post.title}\nBody: ${post.body}`);
+      });
+  });
+  cw4.addEventListener("click", function () {
+    displayLoading(true);
+    fetch("db.json") // https://my-json-server.typicode.com/GajuszPompejusz/paw-javascript2_0/db
+      .then((response) => response.json())
+      .then((array) => {
+        displayLoading(false);
+
+        for (let post of array) {
+          answer.innerHTML += `<div class="post">
+              <div class="title">${post.title}</div>
+              <div class="message">${post.body}</div>
+            </div>`;
+
+          for (let comment of post.comments) {
+            answer.innerHTML += `
+          <div class="post comment">
+            <div class="title">${comment.title}</div>
+            <div class="message">${comment.body}</div>
+          </div>
+          `;
+          }
+
+          console.log(`Title: ${post.title}\nBody: ${post.body}`);
+        }
       });
   });
 })();

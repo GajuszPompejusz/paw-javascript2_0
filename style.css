@@ -21,6 +21,11 @@ html {
   color: #FF0000;
 }
 
+.comment {
+  margin-left: 16px;
+  font-size: 12px;
+}
+
 #popup {
   position: fixed;
   align-items: center;
