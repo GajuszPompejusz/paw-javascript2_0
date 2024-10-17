@@ -1,0 +1,46 @@
+[
+    {
+        "userId": 1,
+        "id": 1,
+        "title": "tytul post 1",
+        "body": "opis post 1",
+        "comments": [
+            {
+                "title": "tytul komentarza 1",
+                "body": "opis komentarza 1"
+            },
+            {
+                "title": "tytul komentarza 2",
+                "body": "opis komentarza 2"
+            }
+        ]
+    },
+    {
+        "userId": 1,
+        "id": 2,
+        "title": "tytul post 2",
+        "body": "opis post 2",
+        "comments": [
+            {
+                "title": "tytul komentarza 3",
+                "body": "opis komentarza 3"
+            }
+        ]
+    },
+    {
+        "userId": 1,
+        "id": 3,
+        "title": "tytul post 3",
+        "body": "opis post 3",
+        "comments": [
+            {
+                "title": "tytul komentarza 4",
+                "body": "opis komentarza 4"
+            },
+            {
+                "title": "tytul komentarza 5",
+                "body": "opis komentarza 5"
+            }
+        ]
+    }
+]
